@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: pink;
+      overflow: hidden;
+      font-family: "Poppins", sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 4rem;
+      color: #fff;
+      text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+      margin-bottom: 20px;
+    }
+
+    .photo-gallery {
+      display: flex;
+      gap: 20px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .photo-gallery img {
+      width: 200px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: absolute;
+      color: red;
+      font-size: 20px;
+      animation: floatUp 5s linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-800px) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    /* Balloons */
+    .balloon {
+      position: absolute;
+      width: 60px;
+      height: 80px;
+      background: #ffb6c1;
+      border-radius: 50% 50% 45% 45%;
+      animation: rise 6s infinite ease-in;
+      box-shadow: inset -5px -10px 20px rgba(255,255,255,0.6);
+    }
+
+    @keyframes rise {
+      0% {
+        bottom: -100px;
+      }
+      100% {
+        bottom: 110%;
+      }
+    }
+  </style>
+</head>
+<script>
+window.addEventListener("load", () => {
+    // Try playing as soon as page loads
+    const audio = document.getElementById("bgMusic");
+    audio.play().catch(() => {
+        // If blocked, create a hidden auto-click button
+        const btn = document.createElement("button");
+        btn.innerText = "play";
+        btn.style.opacity = 0;
+        btn.style.position = "absolute";
+        btn.style.top = "0";
+        btn.style.left = "0";
+        document.body.appendChild(btn);
+
+        // auto-click it after a moment
+        setTimeout(() => btn.click(), 300);
+
+        btn.addEventListener("click", () => {
+            audio.play();
+            btn.remove(); // remove invisible button
+        });
+    });
+});
+</script>
+<body>
+  <h1>Happy Birthday Swaruu❤️</h1>
+
+  <div class="photo-gallery">
+    <img src="swaruu6.jpeg" alt="Photo 1" />
+    <img src="swaruu4.jpeg" alt="Photo 2" />
+    <img src="swaruu5.jpeg" alt="Photo 3" />
+  </div>
+
+  <script>
+    // Floating Hearts
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerHTML = "❤";
+      heart.style.left = Math.random() * window.innerWidth + "px";
+      heart.style.top = window.innerHeight + "px";
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 5000);
+    }
+    setInterval(createHeart, 300);
+
+    // Balloons
+    function createBalloon() {
+      const balloon = document.createElement("div");
+      balloon.classList.add("balloon");
+      balloon.style.left = Math.random() * window.innerWidth + "px";
+      document.body.appendChild(balloon);
+
+      setTimeout(() => balloon.remove(), 6000);
+    }
+    setInterval(createBalloon, 1000);
+  </script>
+  <!-- Background Music -->
+
+
+  <audio id="bgMusic" autoplay loop>
+    <source src="music/audio.mpeg" type="audio/mpeg" />
+  </audio>
+
+  <script>
+document.addEventListener("click", () => {
+    const audio = document.getElementById("bgMusic");
+    audio.play().catch(e => console.log(e));
+});
+</script>
+
+
+  <!-- Navigation Links -->
+  <div style="position: absolute; bottom: 20px; display: flex; gap: 20px;">
+    <a href="memories.html" style="color:white; font-size:1.5rem; text-decoration:none;">Memories</a>
+    <a href="timeline.html" style="color:white; font-size:1.5rem; text-decoration:none;">Timeline</a>
+    <a href="loveletter.html" style="color:white; font-size:1.5rem; text-decoration:none;">Love Letter</a>
+  </div>
+</body>
+</html>
